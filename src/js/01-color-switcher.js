@@ -1,13 +1,29 @@
-const btnStart = document.querySelector('[data-start]');
-const btnStop = document.querySelector('[data-stop]');
+const refs = {
+  btnStart: document.querySelector('[data-start]'),
+  btnStop: document.querySelector('[data-stop]'),
+};
 
-btnStart.addEventListener('click', onInputChange);
+
+refs.btnStart.addEventListener('click', onInputChange);
+refs.btnStop.addEventListener('click', stop);
 
 function onInputChange () {
     document.body.style.backgroundColor = getRandomHexColor();
-    spanText.textContent =  document.body.style.backgroundColor;
+    
+    setInterval(() => {
+      onInputChange();
+      // console.log('hello')
+    }, 1000);
 };
 
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
+
+
+
+
+function stop (){
+  clearInterval(intervalId);
+}
+
