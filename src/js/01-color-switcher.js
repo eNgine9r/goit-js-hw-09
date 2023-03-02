@@ -10,39 +10,23 @@ const refs = {
 refs.btnStart.addEventListener('click', startColorSwitcher);
 refs.btnStop.addEventListener('click', stopColorSwitcher);
 
-function stopColorSwitcher (){
-  clearTimeout(timeoutId);
-}
-
 function startColorSwitcher() {
-  document.body.style.backgroundColor = getRandomHexColor();
-  
   if (isActive) {
-      return;
-    }
-    isActive = true;
-
-  timeoutId = setTimeout(() => {
+    return;
+  };
+  
+  isActive = true;
+  timeoutId = setInterval(() => {
     startColorSwitcher();
+    document.body.style.backgroundColor = getRandomHexColor();
   }, DELAY_COLOR_SWITCHER);
 };
+
+function stopColorSwitcher (){
+  clearInterval(timeoutId);
+  isActive = false;
+}
 
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
-
-// const switcher = {
-//   timeoutId: null,
-//   isActive: false,
-//   start() {
-//     if (isActive) {
-//       return;
-//     }
-    
-//     timeoutId = setTimeout(() => {
-//       document.body.style.backgroundColor = getRandomHexColor();
-//       startColorSwitcher();
-//     }, DELAY_COLOR_SWITCHER);
-
-//   }
-// }
