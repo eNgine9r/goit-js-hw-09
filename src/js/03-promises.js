@@ -17,7 +17,7 @@ function onEventSubmit(e) {
   let amount = Number(refs.amount.value);
 
 
-  for (let i = 0; i < amount; i += 1) {
+  for (let i = 1; i <= amount; i += 1) {
     createPromise(i, delay)
     .then(({ position, delay }) => {
         Notiflix.Notify.success(
